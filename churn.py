@@ -95,8 +95,7 @@ with st.container(border=True, height=300):
             'COMP', 'PROM', 'COMINT', 'COMPPRES', 'RATE', 'DIASSINQ', 'TASARET', 'NUMQ', 'RETRE'.
             El modelo elegido será Naive Bayes, pero vamos a predecir con los tres modelos solo para efectos de comparación.
 
-            Dentro del universo de la analítica predictiva, existen numerosos modelos basados en inteligencia artificial que ayudan a las organizaciones a resolver sus problemas de negocio de manera efectiva.
-            Los modelos de regresión nos permiten predecir un valor, como el beneficio estimado que obtendremos de un determinado cliente (o segmento) en los próximos meses.
+            Dentro del universo de la analítica predictiva, existen numerosos modelos basados en inteligencia artificial que ayudan a las organizaciones a resolver sus problemas de negocio de manera efectiva. Los modelos de regresión nos permiten predecir un valor, como el beneficio estimado que obtendremos de un determinado cliente (o segmento) en los próximos meses.
             Los modelos de clasificación nos permiten predecir la pertenencia a una clase, como clasificar entre nuestros clientes quiénes son más propensos a una compra, a un abandono o a un fraude.
             Y dentro de estos últimos, encontramos el modelo predictivo de churn, el cual nos ofrece información sobre qué clientes tienen más probabilidad de abandonarnos.
         """)
