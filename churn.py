@@ -6,12 +6,6 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
-# Importar las bibliotecas gráficas e imágenes
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Importar la biblioteca de paralelización de modelos
-import joblib as jbjb
 
 # Configurar la página
 st.set_page_config(
