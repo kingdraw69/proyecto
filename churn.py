@@ -14,9 +14,6 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
-# Importar las bibliotecas gráficas e imágenes
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Importar la biblioteca de paralelización de modelos
 import joblib as jb
@@ -215,4 +212,3 @@ with st.container(border=True):
     else:
         st.write("Naive Bayes no tiene parámetro de importancia de los features")
 
-pip install matplotlib
