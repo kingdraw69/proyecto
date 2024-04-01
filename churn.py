@@ -15,8 +15,6 @@ import numpy as np
 import pandas as pd
 
 
-# Importar la biblioteca de paralelización de modelos
-import joblib as jb
 
 
 ruta_cliente_png = "C:/Users/ivane/OneDrive/Documentos/ia/cliente.png"
