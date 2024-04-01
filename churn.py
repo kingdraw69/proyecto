@@ -6,7 +6,11 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
-
+uploaded_files = st.file_uploader("Elige tus archivos", accept_multiple_files=True)
+for uploaded_file in uploaded_files:
+    st.write(ModeloArbol.bin)
+    st.write(ModeloBosqie.bin)
+    st.write(ModeloNB.bin)
 # Configurar la página
 st.set_page_config(
   page_title="Predicción de deserción de clientes",
