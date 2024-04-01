@@ -1,6 +1,4 @@
-pip install matplotlib
-pip install seaborn
-pip install joblib
+
 # Importar la biblioteca Streamlit para crear la aplicación web
 import streamlit as st
 
