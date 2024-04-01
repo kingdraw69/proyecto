@@ -1,44 +1,4 @@
-
-# Importar la biblioteca Streamlit para crear la aplicación web
-import streamlit as st
-
-# Importar las bibliotecas tradicionales de numpy y pandas
-import numpy as np
-import pandas as pd
-
-uploaded_files = st.file_uploader("Elige tus archivos", accept_multiple_files=True)
-for uploaded_file in uploaded_files:
-    st.write(ModeloArbol.bin)
-    st.write(ModeloBosqie.bin)
-    st.write(ModeloNB.bin)
-# Configurar la página
-st.set_page_config(
-  page_title="Predicción de deserción de clientes",
-  page_icon="cliente.ico",
-  initial_sidebar_state='auto',
-  menu_items={
-        'Report a bug': 'http://www.unab.edu.co',
-        'Get Help': "https://docs.streamlit.io/get-started/fundamentals/main-concepts",
-        'About': "# Ivan Eliecer Tarazona Rios. Inteligencia Artificial *Ejemplo de clase* Deployment!"
-    }
-  )
-@st.cache_resource
-def load_models():
-  modeloNB=jb.load('modeloNB.bin')
-  modeloArbol=jb.load('ModeloArbol.bin')
-  modeloBosque=jb.load('ModeloBosque.bin')
-  return modeloNB,modeloArbol,modeloBosque
-#Cargamos a los modelos a usarse en el proyecto. 
-#Nota, generalmente usanmos solo un modelo, pero para ejemplo académico lo vamos a hacer con 
-#los tres modelo entrenado pero recuerde que se escoje el que mejore score nos ofrezca
-
-modeloNB,modeloArbol,modeloBosque= load_models()
-#Los siguientes textos aplican a nivel de la página.
-st.title("Aplicación de predicción")
-st.header('Machine Learning para Churn', divider='rainbow')
-st.subheader('Ejemplo en los modelos :blue[Arbol de Decisión, Bosque Aleatorio y Naive Bayes]')
-
-# Crear un contenedor para la introducción#INTRODICCION
+#INTRODICCION
 
 """Este es un ejemplo de cómo realizar una pagina Web usando streamlite
 para desplegar un modelo de Machine Learning después de haber sido entrenado 
