@@ -14,6 +14,8 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
+# Importar la biblioteca de paralelización de modelos
+import joblib as jb
 
 
 
