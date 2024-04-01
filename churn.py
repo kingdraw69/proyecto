@@ -214,3 +214,5 @@ with st.container(border=True):
         st.bar_chart(importancia)
     else:
         st.write("Naive Bayes no tiene parámetro de importancia de los features")
+
+pip install matplotlib
