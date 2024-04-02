@@ -14,14 +14,14 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
+import modelos
+
 # Importar las bibliotecas gráficas e imágenes
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Importar la biblioteca de paralelización de modelos
 import joblib as jb
-
-
 
 ruta_cliente_png = "C:/Users/ivane/OneDrive/Documentos/ia/cliente.png"
 ruta_modulos_png = "C:/Users/ivane/OneDrive/Documentos/ia/modulos.png"
@@ -42,15 +42,17 @@ st.set_page_config(
   )
 @st.cache_resource
 def load_models():
-  modeloNB=jb.load('modeloNB.bin')
-  modeloArbol=jb.load('ModeloArbol.bin')
-  modeloBosque=jb.load('ModeloBosque.bin')
-  return modeloNB,modeloArbol,modeloBosque
+    modeloNB=jb.load('modeloNB.bin')
+    modeloArbol=jb.load('ModeloArbol.bin')
+    modeloBosque=jb.load('ModeloBosque.bin')
+    # Cargar el DataFrame X
+    X = pd.read_csv(r"C:\Users\ivane\OneDrive\Documentos\ia\DatosEmpresaChurn.csv")  # Ajusta la ruta según la ubicación de tus datos
+    return modeloNB, modeloArbol, modeloBosque, X
 #Cargamos a los modelos a usarse en el proyecto.
 #Nota, generalmente usanmos solo un modelo, pero para ejemplo académico lo vamos a hacer con
 #los tres modelo entrenado pero recuerde que se escoje el que mejore score nos ofrezca
 
-modeloNB,modeloArbol,modeloBosque= load_models()
+modeloNB,modeloArbol,modeloBosque, X= load_models()
 #Los siguientes textos aplican a nivel de la página.
 st.title("Aplicación de predicción")
 st.header('Machine Learning para Churn', divider='rainbow')
@@ -96,7 +98,8 @@ with st.container(border=True, height=300):
             'COMP', 'PROM', 'COMINT', 'COMPPRES', 'RATE', 'DIASSINQ', 'TASARET', 'NUMQ', 'RETRE'.
             El modelo elegido será Naive Bayes, pero vamos a predecir con los tres modelos solo para efectos de comparación.
 
-            Dentro del universo de la analítica predictiva, existen numerosos modelos basados en inteligencia artificial que ayudan a las organizaciones a resolver sus problemas de negocio de manera efectiva. Los modelos de regresión nos permiten predecir un valor, como el beneficio estimado que obtendremos de un determinado cliente (o segmento) en los próximos meses.
+            Dentro del universo de la analítica predictiva, existen numerosos modelos basados en inteligencia artificial que ayudan a las organizaciones a resolver sus problemas de negocio de manera efectiva.
+            Los modelos de regresión nos permiten predecir un valor, como el beneficio estimado que obtendremos de un determinado cliente (o segmento) en los próximos meses.
             Los modelos de clasificación nos permiten predecir la pertenencia a una clase, como clasificar entre nuestros clientes quiénes son más propensos a una compra, a un abandono o a un fraude.
             Y dentro de estos últimos, encontramos el modelo predictivo de churn, el cual nos ofrece información sobre qué clientes tienen más probabilidad de abandonarnos.
         """)
@@ -193,12 +196,12 @@ with st.container(border=True):
         y_predict = modeloArbol.predict(X_predecir)
         probabilidad = modeloArbol.predict_proba(X_predecir)
         importancia = modeloArbol.feature_importances_
-        features = modeloArbol.feature_names_in_
+        features = X.columns
     else:
         y_predict = modeloBosque.predict(X_predecir)
         probabilidad = modeloBosque.predict_proba(X_predecir)
         importancia = modeloBosque.feature_importances_
-        features = modeloBosque.feature_names_in_
+        features = X.columns 
 
     st.write("La predicción es:")
     prediccion = 'Resultado: ' + str(y_predict[0]) + "    - en conclusión: " + churn[y_predict[0]]
@@ -211,8 +214,16 @@ with st.container(border=True):
 
     st.write("La importancia de cada Factor en el modelo es:")
     if modelo != 'Naive Bayes':
-        importancia = pd.Series(importancia, index=features)
-        st.bar_chart(importancia)
+        
+        if modelo == 'Árbol de Decisión':
+            imagen_grafica = 'grafica_importancia_dfc.png'
+
+            # Muestra la imagen en Streamlit
+            st.image(imagen_grafica, caption='Gráfica de importancia de características') 
+        else:
+            imagen_grafica = 'grafica_importancia_rfc.png'
+
+            # Muestra la imagen en Streamlit
+            st.image(imagen_grafica, caption='Gráfica de importancia de características') 
     else:
         st.write("Naive Bayes no tiene parámetro de importancia de los features")
-
