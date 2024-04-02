@@ -23,10 +23,7 @@ import seaborn as sns
 # Importar la biblioteca de paralelización de modelos
 import joblib as jb
 
-ruta_cliente_png = "C:/Users/ivane/OneDrive/Documentos/ia/cliente.png"
-ruta_modulos_png = "C:/Users/ivane/OneDrive/Documentos/ia/modulos.png"
-ruta_churn_jpg = "C:/Users/ivane/OneDrive/Documentos/ia/churn.JPG"
-ruta_introduccion_png = "C:/Users/ivane/OneDrive/Documentos/ia/introduccion.png"
+
 
 
 # Configurar la página
@@ -47,12 +44,12 @@ def load_models():
     modeloBosque=jb.load('ModeloBosque.bin')
     # Cargar el DataFrame X
     X = pd.read_csv(r"C:\Users\ivane\OneDrive\Documentos\ia\DatosEmpresaChurn.csv")  # Ajusta la ruta según la ubicación de tus datos
-    return modeloNB, modeloArbol, modeloBosque, X
+    return modeloNB, modeloArbol, modeloBosqu
 #Cargamos a los modelos a usarse en el proyecto.
 #Nota, generalmente usanmos solo un modelo, pero para ejemplo académico lo vamos a hacer con
 #los tres modelo entrenado pero recuerde que se escoje el que mejore score nos ofrezca
 
-modeloNB,modeloArbol,modeloBosque, X= load_models()
+modeloNB,modeloArbol,modeloBosque= load_models()
 #Los siguientes textos aplican a nivel de la página.
 st.title("Aplicación de predicción")
 st.header('Machine Learning para Churn', divider='rainbow')
@@ -92,7 +89,7 @@ with st.container(border=True, height=300):
 # Luego, en tu código, utiliza esa ruta completa al mostrar la imagen:
     with left_column:
         st.subheader("Introducción")
-        st.image(ruta_introduccion_png, width=100)
+        st.image(introduccion.png, width=100)
         st.write("""
             El objetivo de este trabajo académico es construir una herramienta en código Python para predecir la deserción, la cual requiere de las siguientes características para predecir:
             'COMP', 'PROM', 'COMINT', 'COMPPRES', 'RATE', 'DIASSINQ', 'TASARET', 'NUMQ', 'RETRE'.
@@ -106,7 +103,7 @@ with st.container(border=True, height=300):
 
     with center_column:
         st.subheader("Librerías genéricas usadas")
-        st.image(ruta_cliente_png, width=100)
+        st.image(cliente.png, width=100)
         code = '''
         import pandas as pd
         import numpy as np
@@ -119,7 +116,7 @@ with st.container(border=True, height=300):
 
     with right_column:
         st.subheader("Librerías ML Scikit Learn usadas")
-        st.image(ruta_modulos_png, width=100)
+        st.image(modulos.png, width=100)
         code = '''
         from sklearn.model_selection import train_test_split
         from sklearn.metrics import confusion_matrix
@@ -212,18 +209,9 @@ with st.container(border=True):
     col1.metric(label="Probabilidad de NO:", value="{0:.2%}".format(probabilidad[0][0]), delta=" ")
     col2.metric(label="Probabilidad de SI:", value="{0:.2%}".format(probabilidad[0][1]), delta=" ")
 
-    st.write("La importancia de cada Factor en el modelo es:")
-    if modelo != 'Naive Bayes':
-        
-        if modelo == 'Árbol de Decisión':
-            imagen_grafica = 'grafica_importancia_dfc.png'
-
-            # Muestra la imagen en Streamlit
-            st.image(imagen_grafica, caption='Gráfica de importancia de características') 
-        else:
-            imagen_grafica = 'grafica_importancia_rfc.png'
-
-            # Muestra la imagen en Streamlit
-            st.image(imagen_grafica, caption='Gráfica de importancia de características') 
-    else:
-        st.write("Naive Bayes no tiene parámetro de importancia de los features")
+     st.write("La importancia de cada Factor en el modelo es:")
+  if modelo!='Naive Bayes':
+    importancia=pd.Series(importancia,index=features)
+    st.bar_chart(importancia)
+  else:
+    st.write("Naive Bayes no tiene parámetro de importancia de los features")
