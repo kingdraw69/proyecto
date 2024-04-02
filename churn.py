@@ -14,7 +14,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
-import modelos
+
 
 # Importar las bibliotecas gráficas e imágenes
 import matplotlib.pyplot as plt
