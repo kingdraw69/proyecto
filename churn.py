@@ -43,7 +43,7 @@ def load_models():
     modeloArbol=jb.load('ModeloArbol.bin')
     modeloBosque=jb.load('ModeloBosque.bin')
     # Cargar el DataFrame X
-    X = pd.read_csv(r"C:\Users\ivane\OneDrive\Documentos\ia\DatosEmpresaChurn.csv")  # Ajusta la ruta según la ubicación de tus datos
+      
     return modeloNB, modeloArbol, modeloBosqu
 #Cargamos a los modelos a usarse en el proyecto.
 #Nota, generalmente usanmos solo un modelo, pero para ejemplo académico lo vamos a hacer con
