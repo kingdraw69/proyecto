@@ -201,17 +201,17 @@ with st.container(border=True):
         features = X.columns 
 
     st.write("La predicción es:")
-    prediccion = 'Resultado: ' + str(y_predict[0]) + "    - en conclusión: " + churn[y_predict[0]]
-    st.header(prediccion)
-
-    st.write("Con la siguiente probabilidad")
-    col1, col2 = st.columns(2)
-    col1.metric(label="Probabilidad de NO:", value="{0:.2%}".format(probabilidad[0][0]), delta=" ")
-    col2.metric(label="Probabilidad de SI:", value="{0:.2%}".format(probabilidad[0][1]), delta=" ")
-
-     st.write("La importancia de cada Factor en el modelo es:")
-  if modelo!='Naive Bayes':
-    importancia=pd.Series(importancia,index=features)
-    st.bar_chart(importancia)
-  else:
-    st.write("Naive Bayes no tiene parámetro de importancia de los features")
+        prediccion = 'Resultado: ' + str(y_predict[0]) + "    - en conclusión: " + churn[y_predict[0]]
+        st.header(prediccion)
+    
+        st.write("Con la siguiente probabilidad")
+        col1, col2 = st.columns(2)
+        col1.metric(label="Probabilidad de NO:", value="{0:.2%}".format(probabilidad[0][0]), delta=" ")
+        col2.metric(label="Probabilidad de SI:", value="{0:.2%}".format(probabilidad[0][1]), delta=" ")
+    
+         st.write("La importancia de cada Factor en el modelo es:")
+      if modelo!='Naive Bayes':
+        importancia=pd.Series(importancia,index=features)
+        st.bar_chart(importancia)
+      else:
+        st.write("Naive Bayes no tiene parámetro de importancia de los features")
